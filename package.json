@@ -1,0 +1,25 @@
+{
+  "name": "HerokuTestSever",
+  "version": "1.0.0",
+  "description": "my test server at Heroku.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HitsujiRere/HerokuTestSever.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HitsujiRere/HerokuTestSever/issues"
+  },
+  "homepage": "https://github.com/HitsujiRere/HerokuTestSever#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  }
+}
