@@ -21,51 +21,11 @@
         <button>Send</button>
     </form>
 
-    <div id="canvas"></div>
+    <input id="msg_speed" type="range" min="1" max="20" value="10" />
 
-    <script>
-        const socketio = io();
-
-        let texts = new Array();
-
-        document.getElementById('message_form').addEventListener('submit', (e) => {
-            socketio.emit('fallTexts_message', document.getElementById('input_msg').value);
-            document.getElementById('input_msg').value = '';
-            return e.preventDefault();
-        });
-
-        socketio.on('fallTexts_message', (msg) => {
-            const element = document.createElement('li');
-            element.appendChild(document.createTextNode(msg));
-            // document.getElementById('messages').appendChild(element);
-            print(msg);
-
-            texts.push({ text: msg, x: random(width), y: -100 });
-        });
-
-        function setup() {
-            const canvas = createCanvas(windowWidth, windowHeight);
-            canvas.parent('canvas');
-            background(255);
-        }
-
-        function draw() {
-            texts.forEach((value) => {
-                value.y += 2;
-            });
-
-            texts = texts.filter(v => v.y <= height);
-
-            background(255);
-
-            fill(0);
-            textSize(32);
-            textAlign(CENTER);
-            texts.forEach((value) => {
-                text(value.text, value.x, value.y);
-            });
-        }
-    </script>
+    <div id="canvas" style="text-align: center;"></div>
 </body>
+
+<script language="javascript" type="text/javascript" src="/js/fallTexts.js"></script>
 
 </html>
