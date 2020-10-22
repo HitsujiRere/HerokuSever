@@ -13,6 +13,9 @@ app.get('/fallTexts', async (req, res) => {
 const shareTexts = require('./shareTexts');
 app.use('/shareTexts', shareTexts);
 
+const mathjs = require('./mathjs');
+app.use('/mathjs', mathjs);
+
 app.use(async (req, res, next) => {
     res.status(404);
     res.render('err404.ejs');

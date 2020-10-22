@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script language="javascript" type="text/javascript" src="/js/math.min.js"></script>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <title>Math</title>
+</head>
+
+<body>
+    <form id="expression_form">
+        <input id="input_expression" autocomplete="off" />
+        <button>evaluate</button>
+    </form>
+
+    <script>
+        const parser = math.parser()
+
+        document.getElementById('expression_form').addEventListener('submit', (e) => {
+            console.log(parser.evaluate(document.getElementById('input_expression').value).toString());
+            document.getElementById('input_expression').value = '';
+            return e.preventDefault();
+        });
+
+        parser.evaluate('Qubit = [1,0]');
+        parser.evaluate('I = [[1,0],[0,1]]');
+        parser.evaluate('X = [[0,1],[1,0]]');
+        parser.evaluate('Y = [[0,-i],[i,0]]');
+        parser.evaluate('Z = [[1,0],[0,-1]]');
+        parser.evaluate('H = [[1,1],[1,-1]] / sqrt(2)');
+    </script>
+</body>
+
+</html>

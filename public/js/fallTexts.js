@@ -29,9 +29,8 @@ function setup() {
     xhr.onload = (e) => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
-            console.log(JSON.parse(xhr.responseText));
-            JSON.parse(xhr.responseText).forEach((msg) => {
-                texts.push({ text: msg, x: random(width - textWidth(msg)), time: new Date().getTime(), z: random(10) });
+            JSON.parse(xhr.responseText).reverse().forEach((msg, index) => {
+                texts.push({ text: msg, x: random(width - textWidth(msg)), time: new Date().getTime() - index * 500, z: random(10) });
             });
         }
     };
@@ -57,7 +56,11 @@ const display = () => {
     background(255);
 
     fill(0);
+    strokeWeight(4);
+    stroke(255);
+    strokeJoin(ROUND);
     textSize(32);
+    textAlign(LEFT, TOP);
     texts.forEach((value) => {
         text(value.text, value.x, (time - value.time) / speed);
     });
