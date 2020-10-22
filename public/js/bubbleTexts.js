@@ -23,6 +23,20 @@ function setup() {
     const canvas = createCanvas(windowWidth - 15, windowHeight - 35);
     canvas.parent('canvas');
     background(255);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/shareTexts/getTexts", true);
+    xhr.onload = (e) => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+            console.log(JSON.parse(xhr.responseText));
+            JSON.parse(xhr.responseText).forEach((msg) => {
+                texts.push({ text: msg, x: random(width - textWidth(msg)), y: random(height - 32) });
+            });
+        }
+        console.log(texts);
+    };
+    xhr.send(null);
 }
 
 function draw() {
