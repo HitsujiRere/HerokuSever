@@ -6,9 +6,11 @@ const express = require('express')
 const router = express.Router()
 
 socketio.on('connection', (socket) => {
-    socket.on('fallTexts_message', (msg) => {
-        console.log('message: ' + msg);
-        socketio.emit('fallTexts_message', msg);
+    socket.on('shareTexts_message', (msg) => {
+        if (msg !== '') {
+            console.log('message: ' + msg);
+            socketio.emit('shareTexts_message', msg);
+        }
     });
 });
 
@@ -17,7 +19,7 @@ router.use('/', async (req, res) => {
 });
 
 setInterval(() => {
-    socketio.emit('fallTexts_message', new Date().toLocaleTimeString());
+    socketio.emit('shareTexts_message', new Date().toLocaleTimeString());
 }, 1000);
 
 module.exports = router;

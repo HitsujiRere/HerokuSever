@@ -16,11 +16,11 @@ socketio.on('shareTexts_message', (msg) => {
     // document.getElementById('messages').appendChild(element);
     print(msg);
 
-    texts.push({ text: msg, x: random(width - textWidth(msg)), time: new Date().getTime(), z: random(10) });
+    texts.push({ text: msg, x: random(width - textWidth(msg)), y: random(height - 32) });
 });
 
 function setup() {
-    const canvas = createCanvas(windowWidth - 15, windowHeight - 50);
+    const canvas = createCanvas(windowWidth - 15, windowHeight - 35);
     canvas.parent('canvas');
     background(255);
 }
@@ -32,25 +32,23 @@ function draw() {
 }
 
 const update = () => {
-    const time = new Date().getTime();
-    const speed = document.getElementById('msg_speed').value;
-    texts = texts.filter((value) => (time - value.time) / speed <= height + 100);
 };
 
 const display = () => {
-    const time = new Date().getTime();
-    const speed = document.getElementById('msg_speed').value;
-
     background(255);
 
     fill(0);
+    strokeWeight(4);
+    stroke(255);
+    strokeJoin(ROUND);
     textSize(32);
+    textAlign(LEFT, TOP);
     texts.forEach((value) => {
-        text(value.text, value.x, (time - value.time) / speed);
+        text(value.text, value.x, value.y);
     });
 };
 
 function windowResized() {
-    resizeCanvas(windowWidth - 15, windowHeight - 50);
+    resizeCanvas(windowWidth - 15, windowHeight - 35);
     background(0);
 }
