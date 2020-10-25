@@ -12,26 +12,25 @@
 
 <body>
     <form id="expression_form">
-        <input id="input_expression" autocomplete="off" />
         <button>evaluate</button>
     </form>
 
-    <script>
-        const parser = math.parser()
+    <table id="table">
+    </table>
 
-        document.getElementById('expression_form').addEventListener('submit', (e) => {
-            console.log(parser.evaluate(document.getElementById('input_expression').value).toString());
-            document.getElementById('input_expression').value = '';
-            return e.preventDefault();
-        });
+    <template id="table_template_line">
+        <tr>
+            <td>|x<sub id="qubit_num">i</sub>></td>
 
-        parser.evaluate('Qubit = [1,0]');
-        parser.evaluate('I = [[1,0],[0,1]]');
-        parser.evaluate('X = [[0,1],[1,0]]');
-        parser.evaluate('Y = [[0,-i],[i,0]]');
-        parser.evaluate('Z = [[1,0],[0,-1]]');
-        parser.evaluate('H = [[1,1],[1,-1]] / sqrt(2)');
-    </script>
+            <td id="result">[1, 0]</td>
+        </tr>
+    </template>
+
+    <template id="table_template_value">
+        <td><input id="operation" size=1></input></th>
+    </template>
+
+    <script language="javascript" type="text/javascript" src="/js/qubit.js"></script>
 </body>
 
 </html>
